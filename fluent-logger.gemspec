@@ -32,7 +32,9 @@ EOF
 
   gem.extensions    << 'ext/selective_msgpack/mkrf_conf.rb'
 
-  gem.add_development_dependency 'rake', '>= 0.9.2'
+  # Required for installing the extensions, could be a dev_dep otherwise
+  gem.add_dependency 'rake', '>= 0.9.2'
+
   gem.add_development_dependency 'rspec', '>= 2.7.0'
   gem.add_development_dependency 'simplecov', '>= 0.5.4'
   gem.add_development_dependency 'timecop', '>= 0.3.0'
