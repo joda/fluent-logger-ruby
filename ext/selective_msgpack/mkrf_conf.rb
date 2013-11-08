@@ -18,3 +18,9 @@ rescue
   exit(1)
 end
 
+# RubyGems thinks it is installing a native extension. 
+# To finish installing the extension, it will look for the make or rake file
+# that it assumes was generated and run that to complete the installation
+f = File.open(File.join(File.dirname(__FILE__), "Rakefile"), "w")
+f.write("task :default\n")
+f.close
