@@ -6,6 +6,6 @@ gemspec
 gem "simplecov", :require => false
 gem "simplecov-vim"
 
-gem 'yajl-ruby' # FIXME ruby 1.8.7 don't work add_dependency('yajl-ruby')
-gem "fluentd", :path => 'vendor/fluentd' if RUBY_VERSION >= "1.9.2"
+gem 'msgpack', [">= 0.4.4", "!= 0.5.0", "!= 0.5.1", "!= 0.5.2", "!= 0.5.3", "< 0.6.0"], :platforms => :ruby
+gem 'msgpack-jruby', :platforms => :jruby
 

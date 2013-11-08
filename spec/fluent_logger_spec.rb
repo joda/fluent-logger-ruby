@@ -8,16 +8,16 @@ end
 
 else
 
-require 'fluent/load'
+#require 'fluent/load'
 require 'tempfile'
 require 'logger'
 require 'socket'
 require 'stringio'
 require 'fluent/logger/fluent_logger/cui'
 
-$log = Fluent::Log.new(StringIO.new) # XXX should remove $log from fluentd 
+#$log = Fluent::Log.new(StringIO.new) # XXX should remove $log from fluentd 
 
-describe Fluent::Logger::FluentLogger do
+describe Fluent::Logger::FluentLogger, :broken_with_jruby => true do
   WAIT = ENV['WAIT'] ? ENV['WAIT'].to_f : 0.1
 
   let(:fluentd_port) {

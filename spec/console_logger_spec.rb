@@ -4,7 +4,7 @@ require 'stringio'
 require 'tempfile'
 require 'pathname'
 
-describe Fluent::Logger::ConsoleLogger do
+describe Fluent::Logger::ConsoleLogger, :broken_with_jruby => true do
   before(:each) {
     Timecop.freeze Time.local(2008, 9, 1, 10, 5, 0)
   }
