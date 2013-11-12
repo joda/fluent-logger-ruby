@@ -19,7 +19,14 @@ require 'msgpack'
 require 'socket'
 require 'monitor'
 require 'logger'
-require 'yajl'
+
+yajl_available = 
+  begin
+    require 'yajl'
+    true
+  rescue LoadError
+    false
+  end
 
 module Fluent
 module Logger
@@ -142,9 +149,14 @@ class FluentLogger < LoggerBase
   private
   def to_msgpack(msg)
     begin
-      msg.to_msgpack
-    rescue NoMethodError
-      Yajl::Parser.parse( Yajl::Encoder.encode(msg) ).to_msgpack
+      MessagePack.pack(msg)
+    rescue NoMethodError => e
+      if yajl_available
+        msg = Yajl::Parser.parse( Yajl::Encoder.encode(msg) )
+        MessagePack.pack(msg)
+      else
+        raise e
+      end
     end
   end
 
